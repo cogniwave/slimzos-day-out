@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy13q31hqrg0k"]
+
+[ext_resource type="PackedScene" uid="uid://b7maq4b00u2vh" path="res://scenes/collectable.tscn" id="1_2ing1"]
+[ext_resource type="Script" path="res://scripts/player/inventory.gd" id="1_h6s3r"]
+
+[node name="inventory" type="Node2D"]
+script = ExtResource("1_h6s3r")
+
+[node name="collectable" parent="." instance=ExtResource("1_2ing1")]
+position = Vector2(341, -128)
+scale = Vector2(1.2, 1.19971)
+
+[node name="Label" type="Label" parent="."]
+z_index = 1
+offset_left = 288.0
+offset_top = -139.0
+offset_right = 330.0
+offset_bottom = -116.0
+text = "0"
+horizontal_alignment = 2
