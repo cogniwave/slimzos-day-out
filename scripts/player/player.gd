@@ -1,32 +1,61 @@
 extends CharacterBody2D
 
 class_name Player
-const CollectionTypeEnum = preload("res://scripts/utils/CollectionType.gd")
+
+const CollectionTypeEnum = preload("res://scripts/collectables/CollectionType.gd")
 const SPEED = 200.0
 const JUMP_VELOCITY = -400.0
 
+const DAMAGE_IMMUNITY_MAPPER := {
+	"sunlight": "water",
+	#dsadsa: "fire",
+	#earth,
+	#position,
+	#pumpkin,
+	#shroom_red,
+}
+
+@onready var health_bar = $HealthBar
+@onready var inventory = %Inventory
 @onready var sprite_node = $Node2D
 @onready var dialogue_box = $"../DialogueBox"
+@onready var powerup_timer = $"../timers/PowerupTimer"
+@onready var cooldown_water = $CooldownWater
 
+signal die()
 signal on_pickup_item(item: String)
 
 var types = CollectionTypeEnum.CollectableType.keys()
+var animation_node: AnimatedSprite2D
 
 # list of upgrades power got
-var player_upgrades: Array[String] = ["default"]
-var current_form := 0
-var current_form_prefix := "default"
-var can_move := true
+var _player_upgrades: Dictionary = {
+	"default": { 
+		"cooldown": 0,
+		"duration": 0
+	} 
+}
+var _current_form := "default"
+var _can_move := false
+var health := 100
+var dead := false
+var cooldowns := []
 
 func _ready(): 
-	dialogue_box.connect("dialogue_ended", _on_dialog_end)
-
-
-func _on_dialog_end(): 
-	can_move = true
+	animation_node = sprite_node.get_node("AnimatedSprite2D")
+	animation_node.connect("animation_finished", _on_animation_end)
+	
+func _physics_process(delta):
+	var user_vector = _handle_movement(delta)
+	
+	if Input.is_action_just_pressed("action_1"): 
+		_change_to_water()
+	
+func _animation(animation: String):
+	animation_node.play(_current_form + "_" + animation)
 
 func _handle_movement(delta: float):
-	if can_move == false:
+	if _can_move == false or dead:
 		return
 	
 	var input_right = Input.get_action_strength("move_right")
@@ -45,37 +74,76 @@ func _handle_movement(delta: float):
 			sprite_node.scale.x = -1
 		
 		velocity = input_vector * SPEED
+		_animation("move")
 		
 	# player is standing still
 	else: 
 		velocity = input_vector
+		_animation("idle")
 
 	move_and_slide()
 	return input_vector
 	
-func _physics_process(delta):
-	var user_vector = _handle_movement(delta)
-	
-	if Input.is_action_just_pressed("change_form"): 
-		_update_current_form()
-	
-	
-func _update_current_form(): 
-	# at the end, restart from the beginning
-	if current_form == player_upgrades.size() - 1:
-		current_form = 0
-	else:
-		current_form += 1
-		
-	current_form_prefix = player_upgrades[current_form]
-		
-	sprite_node.get_node("AnimatedSprite2D").play(current_form_prefix + "_move")
-	
+func _change_to_water():
+	if cooldowns.has("water"):
+		return
 
-func on_pickup(item: String):
+	powerup_timer.wait_time = _player_upgrades["water"].duration
+	powerup_timer.start()
+	cooldowns.append("water")
+
+	_update_form("water")
+
+func _update_form(form): 
+	_current_form = form
+	_animation(animation_node.animation.split("_")[-1])
+
+func on_pickup(type: String, item: Dictionary):
 	on_pickup_item.emit(item)
 
 	# add upgrade if user doesn't have it yet	
-	if not player_upgrades.has(item):
-		player_upgrades.append(item)
-		_update_current_form()
+	if _player_upgrades not in item:
+		_player_upgrades[type] = item
+		
+	print(_player_upgrades)
+
+func _on_dialogue_box_dialogue_started(id):
+	_can_move = false
+	velocity = Vector2(0, 0)
+
+func _on_dialogue_box_dialogue_ended():
+	_can_move = true
+
+func take_damage(damage: int, damage_type := ""):
+	if _is_immune(damage_type):
+		return
+	
+	health -= damage
+	health_bar.value = health
+	await _animation("take_damage")
+	_animation("idle")
+	
+	if health < 0:
+		dead = true
+		_animation("die")
+	
+func show_ui(): 
+	health_bar.visible = true
+	#inventory.visible = true
+
+func _is_immune(damage_type := ""):
+	if not damage_type: 
+		return false
+	
+	return DAMAGE_IMMUNITY_MAPPER[damage_type] == _current_form
+
+func _on_powerup_end():
+	_update_form("default")
+	cooldown_water.start_cooldown()
+
+func _on_cooldown_end(powerup: String):
+	cooldowns.erase(powerup)
+
+# only dead animation doesn't repeat 
+func _on_animation_end():
+	get_tree().reload_current_scene()

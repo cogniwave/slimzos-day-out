@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://0so8ci8tx26a"]
+
+[ext_resource type="Script" path="res://scripts/player/cooldown.gd" id="1_lymbc"]
+[ext_resource type="PackedScene" uid="uid://b7maq4b00u2vh" path="res://scenes/collectable.tscn" id="2_oxdxp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pk0ii"]
+line_spacing = 1.0
+font_size = 14
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_lymbc")
+
+[node name="collectable" parent="." instance=ExtResource("2_oxdxp")]
+collectable_type = 1
+
+[node name="Label" type="Label" parent="."]
+offset_left = -4.0
+offset_top = -9.0
+offset_right = 4.0
+offset_bottom = 11.0
+text = "5"
+label_settings = SubResource("LabelSettings_pk0ii")
+
+[node name="CountdownTimer" type="Timer" parent="."]
+
+[node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="CountdownTimer" to="." method="on_countdown"]
+[connection signal="timeout" from="CooldownTimer" to="." method="on_cooldown_end"]

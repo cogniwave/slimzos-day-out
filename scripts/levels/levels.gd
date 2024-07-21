@@ -3,8 +3,6 @@ extends Node
 const ROOT_PATH = "res://levels/"
 
 func _on_body_entered(body):
-	print(" switching level ", body.is_in_group("Player"))
-	
 	if not body.is_in_group("Player"): 
 		return
 	

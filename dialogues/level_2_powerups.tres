@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://bcux2d33aiqk7"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="1_7s1wg"]
+
+[resource]
+script = ExtResource("1_7s1wg")
+starts = {
+"START": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(0, 0),
+"start_id": "START"
+},
+"1_1": {
+"dialogue": "You just found your first power up!",
+"offset": Vector2(411.667, -121.667),
+"options": {
+0: {
+"condition": {},
+"link": &"1_2",
+"text": ""
+}
+},
+"size": Vector2(300, 331),
+"speaker": "<Random voice>"
+},
+"1_2": {
+"dialogue": "Activating this powerup will make you immune to sunlight for a short period of time",
+"offset": Vector2(830, -123.333),
+"options": {
+0: {
+"condition": {},
+"link": &"1_3",
+"text": ""
+}
+},
+"size": Vector2(300, 331),
+"speaker": "<Random voice>"
+},
+"1_3": {
+"dialogue": "Give it a try by using SPACE BAR",
+"offset": Vector2(1251.67, -150),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 392),
+"speaker": "<Random voice>"
+}
+}
+variables = {}
+strays = Array[String]([])
+characters = ""

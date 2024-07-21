@@ -4,14 +4,29 @@
 
 [resource]
 script = ExtResource("1_dc52w")
-starts = {}
+starts = {
+"START": &"0_1"
+}
 nodes = {
 "0_1": {
-"link": "END",
+"link": &"1_1",
 "offset": Vector2(-134, 477),
-"start_id": "STRART"
+"start_id": "START"
+},
+"1_1": {
+"dialogue": "Nooo the sun is rising! Quickly now",
+"offset": Vector2(340, 360),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(789, 478),
+"speaker": "<Slimzo>"
 }
 }
 variables = {}
-strays = Array[String](["0_1"])
+strays = Array[String]([])
 characters = ""

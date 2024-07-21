@@ -1,7 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://b7maq4b00u2vh"]
+[gd_scene load_steps=12 format=3 uid="uid://b7maq4b00u2vh"]
 
 [ext_resource type="Texture2D" uid="uid://858shd0tyuyb" path="res://assets/sprites/environment/world_tileset.png" id="1_5a584"]
-[ext_resource type="Script" path="res://scripts/collectable.gd" id="1_skqml"]
+[ext_resource type="Script" path="res://scripts/collectables/collectable.gd" id="1_skqml"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_u88xo"]
+light_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ooi85"]
 atlas = ExtResource("1_5a584")
@@ -85,6 +88,7 @@ size = Vector2(8, 10.5)
 script = ExtResource("1_skqml")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_u88xo")
 sprite_frames = SubResource("SpriteFrames_ss2vg")
 animation = &"earth"
 

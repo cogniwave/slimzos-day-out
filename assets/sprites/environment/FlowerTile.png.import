@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b72w2giv1rj"
-path="res://.godot/imported/tileset_grayscale.png-a8d749189a8bcea32861691ad38b9edd.ctex"
+uid="uid://c8qsvv8wa4k6q"
+path="res://.godot/imported/FlowerTile.png-fa0393961f978709127683cf02e7e1a2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/environment/tileset_grayscale.png"
-dest_files=["res://.godot/imported/tileset_grayscale.png-a8d749189a8bcea32861691ad38b9edd.ctex"]
+source_file="res://assets/sprites/environment/FlowerTile.png"
+dest_files=["res://.godot/imported/FlowerTile.png-fa0393961f978709127683cf02e7e1a2.ctex"]
 
 [params]
 

@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://dvscb2yegnobw"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="1_6p5ht"]
+
+[resource]
+script = ExtResource("1_6p5ht")
+starts = {
+"START": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(100, 140),
+"start_id": "START"
+},
+"1_1": {
+"dialogue": "Auch! Sunlight hurts!",
+"offset": Vector2(500, -40),
+"options": {
+0: {
+"condition": {},
+"link": &"1_2",
+"text": ""
+}
+},
+"size": Vector2(510.417, 442.805),
+"speaker": "<Slimezo>"
+},
+"1_2": {
+"dialogue": "We must stay in the shadows or find something that would help me stay in the sun",
+"offset": Vector2(1140, -60),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(616.667, 478.222),
+"speaker": "<Slimezo>"
+}
+}
+variables = {}
+strays = Array[String]([])
+characters = ""
