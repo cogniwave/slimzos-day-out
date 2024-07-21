@@ -14,5 +14,5 @@ var collectable_type: CollectionTypeEnum.CollectableType
 func _ready():
 	collectable.collectable_type = collectable_type
 	
-func update_inventory(item):
+func update_inventory(_item):
 	label.text = str(int(label.text) + 1)

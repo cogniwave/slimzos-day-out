@@ -9486,6 +9486,7 @@ cooldown = 5
 duration = 2
 
 [node name="DialogueBox" type="Panel" parent="."]
+unique_name_in_owner = true
 visible = false
 z_index = 200
 material = SubResource("CanvasItemMaterial_rw2ra")

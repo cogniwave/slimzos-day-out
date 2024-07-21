@@ -18,7 +18,7 @@ const DAMAGE_IMMUNITY_MAPPER := {
 @onready var health_bar = $HealthBar
 @onready var inventory = %Inventory
 @onready var sprite_node = $Node2D
-@onready var dialogue_box = $"../DialogueBox"
+@onready var dialogue_box = %DialogueBox
 @onready var powerup_timer = $"../timers/PowerupTimer"
 @onready var cooldown_water = $CooldownWater
 
@@ -45,8 +45,8 @@ func _ready():
 	animation_node = sprite_node.get_node("AnimatedSprite2D")
 	animation_node.connect("animation_finished", _on_animation_end)
 	
-func _physics_process(delta):
-	var user_vector = _handle_movement(delta)
+func _physics_process(_delta):
+	_handle_movement()
 	
 	if Input.is_action_just_pressed("action_1"): 
 		_change_to_water()
@@ -54,7 +54,7 @@ func _physics_process(delta):
 func _animation(animation: String):
 	animation_node.play(_current_form + "_" + animation)
 
-func _handle_movement(delta: float):
+func _handle_movement():
 	if _can_move == false or dead:
 		return
 	
@@ -104,10 +104,8 @@ func on_pickup(type: String, item: Dictionary):
 	# add upgrade if user doesn't have it yet	
 	if _player_upgrades not in item:
 		_player_upgrades[type] = item
-		
-	print(_player_upgrades)
 
-func _on_dialogue_box_dialogue_started(id):
+func _on_dialogue_box_dialogue_started(_id):
 	_can_move = false
 	velocity = Vector2(0, 0)
 

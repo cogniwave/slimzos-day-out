@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var collectable = $environment/collectable
-@onready var dialogue_box = $DialogueBox
+@onready var dialogue_box = %DialogueBox
 @onready var camera = $player/camera
 @onready var player = $player
 @onready var damage_timer = $timers/DamageTimer
@@ -38,7 +38,7 @@ func _damage_player():
 	if player.dead:
 		damage_timer.stop()
 
-func collect_powerup(body):
+func collect_powerup():
 	if collectable.visible:
 		player.cooldown_water.visible = true
 		_start_dialog("res://dialogues/level_2_powerups.tres")
