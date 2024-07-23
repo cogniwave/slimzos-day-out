@@ -123,7 +123,7 @@ func take_damage(damage: int, damage_type := ""):
 	await _animation("take_damage")
 	_animation("idle")
 	
-	if health < 0:
+	if health <= 0:
 		dead = true
 		_animation("die")
 	

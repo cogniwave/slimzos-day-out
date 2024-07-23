@@ -19,7 +19,6 @@ func _ready():
 	sprite.play(type)
 
 func _on_player_pickup(body):
-	print(body.is_in_group("Player"), visible, body)
 	if body.is_in_group("Player") and visible: 
 		player.on_pickup(type, { "cooldown": cooldown, "duration": duration })
 		queue_free()
