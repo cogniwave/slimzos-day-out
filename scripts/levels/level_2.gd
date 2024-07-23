@@ -38,13 +38,10 @@ func _damage_player():
 	if player.dead:
 		damage_timer.stop()
 
-func collect_powerup():
-	if collectable.visible:
-		player.cooldown_water.visible = true
-		_start_dialog("res://dialogues/level_2_powerups.tres")
-	
 func _start_dialog(dialog_path: String):
 	dialogue_box.data = load(dialog_path)
 	dialogue_box.set_position(Vector2i(player.position.x - 320, player.position.y - 170))
 	dialogue_box.start()
 
+func _on_collectable_body_entered(body):
+	_start_dialog("res://dialogues/level_2_powerups.tres")

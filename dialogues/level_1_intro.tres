@@ -15,7 +15,7 @@ nodes = {
 },
 "1_1": {
 "dialogue": "Oh hey!",
-"offset": Vector2(220, 0),
+"offset": Vector2(240, 0),
 "options": {
 0: {
 "condition": {},
@@ -24,7 +24,7 @@ nodes = {
 }
 },
 "size": Vector2(300, 387),
-"speaker": -1
+"speaker": "<Random voice>"
 },
 "1_2": {
 "dialogue": "Little Slimzo got lost.",
@@ -37,7 +37,7 @@ nodes = {
 }
 },
 "size": Vector2(300, 387),
-"speaker": -1
+"speaker": "<Random voice>"
 },
 "1_3": {
 "dialogue": "Can you help him get home ? ",
@@ -50,7 +50,7 @@ nodes = {
 }
 },
 "size": Vector2(300, 387),
-"speaker": -1
+"speaker": "<Random voice>"
 },
 "1_4": {
 "dialogue": "You better hurry up, daylight is coming",
@@ -63,7 +63,7 @@ nodes = {
 }
 },
 "size": Vector2(300, 387),
-"speaker": -1
+"speaker": "<Random voice>"
 }
 }
 variables = {}

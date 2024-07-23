@@ -23,7 +23,7 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(300, 331),
+"size": Vector2(300, 392),
 "speaker": "<Random voice>"
 },
 "1_2": {
@@ -36,11 +36,11 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(300, 331),
+"size": Vector2(300, 392),
 "speaker": "<Random voice>"
 },
 "1_3": {
-"dialogue": "Give it a try by using SPACE BAR",
+"dialogue": "Give it a try by pressing \"1\"",
 "offset": Vector2(1251.67, -150),
 "options": {
 0: {

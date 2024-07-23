@@ -104,6 +104,8 @@ func on_pickup(type: String, item: Dictionary):
 	# add upgrade if user doesn't have it yet	
 	if _player_upgrades not in item:
 		_player_upgrades[type] = item
+		
+	cooldown_water.visible = true
 
 func _on_dialogue_box_dialogue_started(_id):
 	_can_move = false
