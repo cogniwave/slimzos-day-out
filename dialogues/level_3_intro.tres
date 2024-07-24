@@ -14,7 +14,7 @@ nodes = {
 "start_id": "START"
 },
 "1_1": {
-"dialogue": "Sure is getting hot around here. I hope we're not too far off",
+"dialogue": "  Sure is getting hot around here. I hope we're not too far off",
 "offset": Vector2(660, 400),
 "options": {
 0: {

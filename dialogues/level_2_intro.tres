@@ -14,7 +14,7 @@ nodes = {
 "start_id": "START"
 },
 "1_1": {
-"dialogue": "Nooo the sun is rising! Quickly now",
+"dialogue": "  Nooo the sun is rising! Quickly now",
 "offset": Vector2(380, 600),
 "options": {
 0: {

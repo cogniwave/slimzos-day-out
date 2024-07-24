@@ -385,11 +385,13 @@ autoplay = "default_idle"
 centered = false
 
 [node name="CooldownWater" parent="." instance=ExtResource("7_dm1e1")]
+visible = false
 position = Vector2(-312, -134)
 cooldown = 5
 type = 1
 
 [node name="HealthBar" type="ProgressBar" parent="."]
+visible = false
 z_index = 50
 material = SubResource("CanvasItemMaterial_8mghr")
 offset_left = -322.0
@@ -433,4 +435,6 @@ horizontal_alignment = 1
 [node name="PowerupTimer" type="Timer" parent="."]
 one_shot = true
 
+[connection signal="cooldown_end" from="CooldownWater" to="." method="_on_cooldown_end"]
 [connection signal="value_changed" from="HealthBar" to="HealthBar/Label" method="on_health_change"]
+[connection signal="timeout" from="PowerupTimer" to="." method="_on_powerup_end"]

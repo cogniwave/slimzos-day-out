@@ -21,7 +21,7 @@ func heal(amount: int) -> int:
 	health += amount
 	return health
 	
-func take_damage(amount) -> int: 
+func take_damage(amount: int) -> int: 
 	health -= amount
 	return health
 	
@@ -53,7 +53,6 @@ func activate_upgrade(upgrade: String) -> int:
 func reset_cooldown(upgrade: String): 
 	cooldowns.erase(upgrade)
 
-# temporary, to be removed when player becomes singleton
 func reset():
 	cooldowns = []
 	update_form("default")

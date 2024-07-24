@@ -7,6 +7,7 @@ extends Node2D
 @onready var damage_timer = $timers/DamageTimer
 
 var dialogue_shown := false
+var timer_cycles := 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,7 +26,8 @@ func entered_sunlight(body):
 		dialogue_shown = true
 		player.show_ui()
 		
-	player.take_damage(10, "sunlight")	
+	player.take_damage(10, "sunlight")
+	timer_cycles = 1
 	damage_timer.start()
 
 func left_sunlight(body):
@@ -33,14 +35,15 @@ func left_sunlight(body):
 		damage_timer.stop()
 		
 func _damage_player(): 
-	player.take_damage(20, "sunlight")
+	player.take_damage(5 * timer_cycles, "sunlight")
+	timer_cycles += 1
 	
 	if player.dead:
 		damage_timer.stop()
 
 func _start_dialog(dialog_path: String):
 	dialogue_box.data = load(dialog_path)
-	dialogue_box.set_position(Vector2i(player.position.x - 320, player.position.y - 170))
+	dialogue_box.set_position(Vector2i(player.position.x - 328, player.position.y - 176))
 	dialogue_box.start()
 
 func _on_collectable_body_entered(body):

@@ -14,7 +14,7 @@ nodes = {
 "start_id": "START"
 },
 "1_1": {
-"dialogue": "Oh hey!",
+"dialogue": "  Oh hey!",
 "offset": Vector2(60, 340),
 "options": {
 0: {
@@ -27,7 +27,7 @@ nodes = {
 "speaker": "<Mysterious voice>"
 },
 "1_2": {
-"dialogue": "Little Slimzo got lost.",
+"dialogue": "  Little Slimzo got lost.",
 "offset": Vector2(560, -500),
 "options": {
 0: {
@@ -40,7 +40,7 @@ nodes = {
 "speaker": "<Mysterious voice>"
 },
 "1_3": {
-"dialogue": "Can you help him get home ? ",
+"dialogue": "  Can you help him get home ? ",
 "offset": Vector2(940, 480),
 "options": {
 0: {
@@ -53,7 +53,7 @@ nodes = {
 "speaker": "<Mysterious voice>"
 },
 "1_4": {
-"dialogue": "You better hurry up, daylight is coming",
+"dialogue": "  You better hurry up, daylight is coming",
 "offset": Vector2(1640, -280),
 "options": {
 0: {

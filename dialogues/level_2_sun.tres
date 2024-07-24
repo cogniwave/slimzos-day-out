@@ -14,7 +14,7 @@ nodes = {
 "start_id": "START"
 },
 "1_1": {
-"dialogue": "Auch! Sunlight hurts!",
+"dialogue": "  Auch! The sun hurts!",
 "offset": Vector2(320, -60),
 "options": {
 0: {
@@ -27,8 +27,8 @@ nodes = {
 "speaker": "<Slimezo>"
 },
 "1_2": {
-"dialogue": "We must stay in the shadows or find something that would help me stay in the sun",
-"offset": Vector2(2060, -220),
+"dialogue": "  We must stay in the shadows or find something that would help me stay in the sun",
+"offset": Vector2(2040, -220),
 "options": {
 0: {
 "condition": {},
@@ -40,7 +40,7 @@ nodes = {
 "speaker": "<Slimezo>"
 },
 "1_3": {
-"dialogue": "The longer we stay in it's light, the more it hurts",
+"dialogue": "  The longer we stay in it's light, the more it hurts",
 "offset": Vector2(1080, -200),
 "options": {
 0: {
@@ -50,7 +50,7 @@ nodes = {
 }
 },
 "size": Vector2(515.622, 380.247),
-"speaker": "Slimezo"
+"speaker": "<Slimezo>"
 }
 }
 variables = {}

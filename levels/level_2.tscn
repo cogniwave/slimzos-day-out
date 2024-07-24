@@ -1,8 +1,7 @@
-[gd_scene load_steps=44 format=3 uid="uid://c70vnh71bo84q"]
+[gd_scene load_steps=39 format=3 uid="uid://c70vnh71bo84q"]
 
 [ext_resource type="Script" path="res://scripts/levels/level_2.gd" id="1_exeg0"]
 [ext_resource type="PackedScene" uid="uid://dfnxd3n61qqu4" path="res://scenes/player.tscn" id="1_w6558"]
-[ext_resource type="PackedScene" uid="uid://cy13q31hqrg0k" path="res://scenes/inventory.tscn" id="3_gobe2"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueBox.gd" id="4_b6yl6"]
 [ext_resource type="Resource" uid="uid://bdtnpy86w2dje" path="res://dialogues/level_2_intro.tres" id="6_lg2fn"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeWait.gd" id="6_pl6jt"]
@@ -25,15 +24,6 @@
 [ext_resource type="Texture2D" uid="uid://bp0vx60cqgpeb" path="res://assets/sprites/environment/light_strong.png" id="20_wa6k0"]
 [ext_resource type="PackedScene" uid="uid://1idcj322keqg" path="res://scenes/next_level_colider.tscn" id="21_yey3q"]
 [ext_resource type="PackedScene" uid="uid://b7maq4b00u2vh" path="res://scenes/collectable.tscn" id="22_2keui"]
-[ext_resource type="PackedScene" uid="uid://0so8ci8tx26a" path="res://ui/cooldown.tscn" id="26_ralgw"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ltdls"]
-light_mode = 1
-
-[sub_resource type="Theme" id="Theme_otajq"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ojae2"]
-light_mode = 1
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_keqj3"]
 texture = ExtResource("7_qxmvf")
@@ -9313,38 +9303,6 @@ position = Vector2(-130, -16)
 collision_layer = 3
 collision_mask = 3
 
-[node name="CooldownWater2" parent="player" instance=ExtResource("26_ralgw")]
-visible = false
-position = Vector2(-312, -134)
-cooldown = 5
-type = 1
-
-[node name="HealthBar2" type="ProgressBar" parent="player"]
-visible = false
-z_index = 50
-material = SubResource("CanvasItemMaterial_ltdls")
-offset_left = -322.0
-offset_top = -168.0
-offset_right = -200.0
-offset_bottom = -145.0
-theme = SubResource("Theme_otajq")
-step = 10.0
-value = 100.0
-show_percentage = false
-
-[node name="Inventory2" parent="player" instance=ExtResource("3_gobe2")]
-unique_name_in_owner = true
-visible = false
-z_index = 50
-material = SubResource("CanvasItemMaterial_ojae2")
-position = Vector2(-46, -34)
-scale = Vector2(1, 0.994014)
-
-[node name="camera2" type="Camera2D" parent="player"]
-position = Vector2(-9.00002, 6)
-scale = Vector2(1, 0.98823)
-position_smoothing_speed = 20.0
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_xpx3l")
 
@@ -9512,16 +9470,16 @@ duration = 2
 [node name="DialogueBox" type="Panel" parent="."]
 unique_name_in_owner = true
 visible = false
-z_index = 5
+z_index = 100
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -441.0
-offset_top = -192.0
-offset_right = 182.0
-offset_bottom = -50.0
+offset_left = -459.0
+offset_top = -190.0
+offset_right = 181.0
+offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("4_b6yl6")
@@ -9534,7 +9492,6 @@ skip_input_action = "skip_dialogue"
 custom_effects = Array[RichTextEffect]([SubResource("RichTextEffect_c6wh6"), SubResource("RichTextEffect_pyhwf"), SubResource("RichTextEffect_fu5un")])
 max_options_count = 1
 
-[connection signal="cooldown_end" from="player/CooldownWater2" to="player" method="_on_cooldown_end"]
 [connection signal="timeout" from="timers/DamageTimer" to="." method="_damage_player"]
 [connection signal="timeout" from="timers/PowerupTimer" to="player" method="_on_powerup_end"]
 [connection signal="body_entered" from="environment/sunlightColider" to="." method="entered_sunlight"]
@@ -9546,5 +9503,6 @@ max_options_count = 1
 [connection signal="body_entered" from="environment/sunlightColider4" to="." method="entered_sunlight"]
 [connection signal="body_exited" from="environment/sunlightColider4" to="." method="left_sunlight"]
 [connection signal="body_entered" from="environment/collectable" to="." method="_on_collectable_body_entered"]
+[connection signal="on_pickup" from="environment/collectable" to="player" method="on_pickup"]
 [connection signal="dialogue_ended" from="DialogueBox" to="player" method="_on_dialogue_box_dialogue_ended"]
 [connection signal="dialogue_started" from="DialogueBox" to="player" method="_on_dialogue_box_dialogue_started"]

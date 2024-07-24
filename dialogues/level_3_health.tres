@@ -19,7 +19,7 @@ nodes = {
 "start_id": "START"
 },
 "1_1": {
-"dialogue": "You just found your first health pickup!",
+"dialogue": "  You just found your first health pickup!",
 "offset": Vector2(560, -140),
 "options": {
 0: {
@@ -32,7 +32,7 @@ nodes = {
 "speaker": "<Mysterious voice>"
 },
 "1_2": {
-"dialogue": "These restore 10% of your HP automatically on pickup",
+"dialogue": "  These restore 10% of your HP automatically on pickup",
 "offset": Vector2(1520, -320),
 "options": {
 0: {
@@ -45,7 +45,7 @@ nodes = {
 "speaker": "<Mysterious voice>"
 },
 "1_3": {
-"dialogue": "If you're already at 100%, then it'll go to your inventory where you can use it by pressing \"F\"",
+"dialogue": "  If you're already at 100%, then it'll go to your inventory where you can use it by pressing \"F\"",
 "offset": Vector2(2658.36, -219.661),
 "options": {
 0: {
@@ -54,12 +54,12 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(300, 392),
+"size": Vector2(590.909, 520.182),
 "speaker": "<Mysterious voice>"
 },
 "1_4": {
-"dialogue": "Feel try to try it now by pressing \"F\"",
-"offset": Vector2(3240, -40),
+"dialogue": "  Feel try to try it now by pressing \"F\"",
+"offset": Vector2(3740, -460),
 "options": {
 0: {
 "condition": {},
@@ -67,7 +67,7 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(300, 392),
+"size": Vector2(844.545, 486.545),
 "speaker": "<Mysterious voice>"
 }
 }

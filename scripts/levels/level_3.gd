@@ -13,6 +13,7 @@ func _ready():
 	dialogue_box.start()
 	player.health_bar.value = PlayerState.health
 	PlayerState.reset()
+	player.show_ui()
 	
 func entered_sunlight(body):
 	if not body.is_in_group("Player"):
@@ -35,11 +36,12 @@ func _damage_player():
 
 func _start_dialog(dialog_path: String):
 	dialogue_box.data = load(dialog_path)
-	dialogue_box.set_position(Vector2i(player.position.x - 320, player.position.y - 170))
+	dialogue_box.set_position(Vector2i(player.position.x - 328, player.position.y - 176))
 	dialogue_box.start()
 
 func _on_health_pickup(_amount):
 	if shown_tutorial == false:
 		_start_dialog("res://dialogues/level_3_health.tres")
 		shown_tutorial = true
+		PlayerState.add_upgrade("pots", {})
 		

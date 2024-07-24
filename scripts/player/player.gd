@@ -92,7 +92,12 @@ func on_pickup(type: String, item: Dictionary):
 
 	# add upgrade if user doesn't have it yet	
 	PlayerState.add_upgrade(type, item)
-	cooldown_water.visible = true
+	
+	if type == "water": 
+		cooldown_water.visible = true
+		
+	if type == "pots": 
+		health_pots.visible = true
 
 func _on_dialogue_box_dialogue_started(_id):
 	_can_move = false
@@ -113,8 +118,14 @@ func take_damage(damage: int, damage_type := ""):
 		dead = true
 		_animation("die")
 	
-func show_ui(): 
+func show_ui(full = false): 
 	health_bar.visible = true
+	
+	if "water" in PlayerState.upgrades: 
+		cooldown_water.visible = true
+		
+	if "pots" in PlayerState.upgrades: 
+		health_pots.visible = true
 
 func _is_immune(damage_type := ""):
 	if not damage_type: 
