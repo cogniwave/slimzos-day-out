@@ -1,0 +1,76 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://d2g603okwxc5s"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="1_rkse2"]
+
+[resource]
+script = ExtResource("1_rkse2")
+starts = {
+"START": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(0, 0),
+"start_id": "START"
+},
+"0_2": {
+"link": "END",
+"offset": Vector2(0, 0),
+"start_id": "START"
+},
+"1_1": {
+"dialogue": "You just found your first health pickup!",
+"offset": Vector2(560, -140),
+"options": {
+0: {
+"condition": {},
+"link": &"1_2",
+"text": ""
+}
+},
+"size": Vector2(718.182, 492.157),
+"speaker": "<Mysterious voice>"
+},
+"1_2": {
+"dialogue": "These restore 10% of your HP automatically on pickup",
+"offset": Vector2(1520, -320),
+"options": {
+0: {
+"condition": {},
+"link": &"1_3",
+"text": ""
+}
+},
+"size": Vector2(911.571, 625.215),
+"speaker": "<Mysterious voice>"
+},
+"1_3": {
+"dialogue": "If you're already at 100%, then it'll go to your inventory where you can use it by pressing \"F\"",
+"offset": Vector2(2658.36, -219.661),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 392),
+"speaker": "<Mysterious voice>"
+},
+"1_4": {
+"dialogue": "Feel try to try it now by pressing \"F\"",
+"offset": Vector2(3240, -40),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 392),
+"speaker": "<Mysterious voice>"
+}
+}
+variables = {}
+strays = Array[String](["0_2", "1_4"])
+characters = ""

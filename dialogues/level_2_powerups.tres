@@ -10,12 +10,12 @@ starts = {
 nodes = {
 "0_1": {
 "link": &"1_1",
-"offset": Vector2(0, 0),
+"offset": Vector2(-140, -160),
 "start_id": "START"
 },
 "1_1": {
 "dialogue": "You just found your first power up!",
-"offset": Vector2(411.667, -121.667),
+"offset": Vector2(280, 100),
 "options": {
 0: {
 "condition": {},
@@ -24,11 +24,11 @@ nodes = {
 }
 },
 "size": Vector2(300, 392),
-"speaker": "<Random voice>"
+"speaker": "<Mysterious voice>"
 },
 "1_2": {
 "dialogue": "Activating this powerup will make you immune to sunlight for a short period of time",
-"offset": Vector2(830, -123.333),
+"offset": Vector2(820, -280),
 "options": {
 0: {
 "condition": {},
@@ -37,11 +37,11 @@ nodes = {
 }
 },
 "size": Vector2(300, 392),
-"speaker": "<Random voice>"
+"speaker": "<Mysterious voice>"
 },
 "1_3": {
 "dialogue": "Give it a try by pressing \"1\"",
-"offset": Vector2(1251.67, -150),
+"offset": Vector2(1440, 20),
 "options": {
 0: {
 "condition": {},
@@ -50,7 +50,7 @@ nodes = {
 }
 },
 "size": Vector2(300, 392),
-"speaker": "<Random voice>"
+"speaker": "<Mysterious voice>"
 }
 }
 variables = {}

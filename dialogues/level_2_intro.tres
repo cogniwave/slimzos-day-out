@@ -10,12 +10,12 @@ starts = {
 nodes = {
 "0_1": {
 "link": &"1_1",
-"offset": Vector2(-134, 477),
+"offset": Vector2(-280, 320),
 "start_id": "START"
 },
 "1_1": {
 "dialogue": "Nooo the sun is rising! Quickly now",
-"offset": Vector2(340, 360),
+"offset": Vector2(380, 600),
 "options": {
 0: {
 "condition": {},
