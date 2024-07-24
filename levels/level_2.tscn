@@ -9457,7 +9457,7 @@ position = Vector2(316, 154)
 shape = SubResource("RectangleShape2D_3lgah")
 
 [node name="nextLevelColider" parent="environment" instance=ExtResource("21_yey3q")]
-position = Vector2(20, -416)
+position = Vector2(37, -415)
 collision_layer = 2
 
 [node name="collectable" parent="environment" instance=ExtResource("22_2keui")]

@@ -118,7 +118,7 @@ func take_damage(damage: int, damage_type := ""):
 		dead = true
 		_animation("die")
 	
-func show_ui(full = false): 
+func show_ui(): 
 	health_bar.visible = true
 	
 	if "water" in PlayerState.upgrades: 

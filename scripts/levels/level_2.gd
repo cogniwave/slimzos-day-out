@@ -46,5 +46,5 @@ func _start_dialog(dialog_path: String):
 	dialogue_box.set_position(Vector2i(player.position.x - 328, player.position.y - 176))
 	dialogue_box.start()
 
-func _on_collectable_body_entered(body):
+func _on_collectable_body_entered(_body):
 	_start_dialog("res://dialogues/level_2_powerups.tres")
