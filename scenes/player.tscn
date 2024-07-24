@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://dfnxd3n61qqu4"]
+[gd_scene load_steps=60 format=3 uid="uid://dfnxd3n61qqu4"]
 
 [ext_resource type="Texture2D" uid="uid://g4m6fat7nb3k" path="res://assets/sprites/player/slime_idle2.png" id="1_42ol3"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_vgiml"]
@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://bvceak12el3yk" path="res://assets/sprites/player/slime_move.png" id="4_mjjiv"]
 [ext_resource type="Texture2D" uid="uid://dajcsd350w0ln" path="res://assets/sprites/player/slime_hit.png" id="5_hl2rn"]
 [ext_resource type="Texture2D" uid="uid://oymlmtmqbkd5" path="res://assets/sprites/player/slime_idle3.png" id="6_0wlqw"]
+[ext_resource type="PackedScene" uid="uid://0so8ci8tx26a" path="res://ui/cooldown.tscn" id="7_dm1e1"]
+[ext_resource type="Script" path="res://scripts/player/HealthBarText.gd" id="8_8p5ii"]
+[ext_resource type="Texture2D" uid="uid://858shd0tyuyb" path="res://assets/sprites/environment/world_tileset.png" id="9_qfq8w"]
+[ext_resource type="Script" path="res://scripts/player/healthPots.gd" id="10_1kd3x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_co552"]
 radius = 11.0
@@ -344,6 +348,26 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8mghr"]
+light_mode = 1
+
+[sub_resource type="Theme" id="Theme_um7yn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xu3mc"]
+atlas = ExtResource("9_qfq8w")
+region = Rect2(64, 128, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gm3b7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xu3mc")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_vgiml")
 
@@ -359,3 +383,54 @@ sprite_frames = SubResource("SpriteFrames_id1q2")
 animation = &"default_die"
 autoplay = "default_idle"
 centered = false
+
+[node name="CooldownWater" parent="." instance=ExtResource("7_dm1e1")]
+position = Vector2(-312, -134)
+cooldown = 5
+type = 1
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+z_index = 50
+material = SubResource("CanvasItemMaterial_8mghr")
+offset_left = -322.0
+offset_top = -168.0
+offset_right = -200.0
+offset_bottom = -145.0
+theme = SubResource("Theme_um7yn")
+step = 10.0
+value = 100.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="HealthBar"]
+layout_mode = 0
+offset_right = 122.0
+offset_bottom = 23.0
+text = "100
+"
+horizontal_alignment = 1
+script = ExtResource("8_8p5ii")
+
+[node name="camera" type="Camera2D" parent="."]
+position = Vector2(-9.00002, 6)
+scale = Vector2(1, 0.98823)
+position_smoothing_speed = 20.0
+
+[node name="HealthPots" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-295, -132)
+scale = Vector2(0.8125, 0.8125)
+sprite_frames = SubResource("SpriteFrames_gm3b7")
+script = ExtResource("10_1kd3x")
+
+[node name="Label" type="Label" parent="HealthPots"]
+offset_left = -7.38462
+offset_top = 4.92308
+offset_right = 8.61538
+offset_bottom = 27.9231
+text = "0"
+horizontal_alignment = 1
+
+[node name="PowerupTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="value_changed" from="HealthBar" to="HealthBar/Label" method="on_health_change"]

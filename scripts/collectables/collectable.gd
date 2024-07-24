@@ -2,11 +2,11 @@ extends Area2D
 
 class_name Collectable
 
+signal on_pickup(type: String, payload: Dictionary)
+
 const CollectionTypeEnum = preload("res://scripts/collectables/CollectionType.gd")
 
 @onready var sprite = $AnimatedSprite2D
-@onready var player = %player
-
 @export var collectable_type: CollectionTypeEnum.CollectableType
 @export var cooldown: int
 @export var duration: int
@@ -20,5 +20,5 @@ func _ready():
 
 func _on_player_pickup(body):
 	if body.is_in_group("Player") and visible: 
-		player.on_pickup(type, { "cooldown": cooldown, "duration": duration })
+		on_pickup.emit(type, { "cooldown": cooldown, "duration": duration })
 		queue_free()

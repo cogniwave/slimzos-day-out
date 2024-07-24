@@ -2,7 +2,6 @@ extends Node2D
 
 const CollectionTypeEnum = preload("res://scripts/collectables/CollectionType.gd")
 
-@onready var player = %player
 @onready var collectable = $collectable
 @onready var label = $Label
 

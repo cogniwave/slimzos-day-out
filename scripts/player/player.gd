@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-class_name Player
-
 const CollectionTypeEnum = preload("res://scripts/collectables/CollectionType.gd")
 const SPEED = 200.0
 const JUMP_VELOCITY = -400.0
@@ -16,10 +14,9 @@ const DAMAGE_IMMUNITY_MAPPER := {
 }
 
 @onready var health_bar = $HealthBar
-@onready var inventory = %Inventory
+@onready var health_pots = $HealthPots
 @onready var sprite_node = $Node2D
-@onready var dialogue_box = %DialogueBox
-@onready var powerup_timer = $"../timers/PowerupTimer"
+@onready var powerup_timer = $PowerupTimer
 @onready var cooldown_water = $CooldownWater
 
 signal die()
@@ -28,18 +25,8 @@ signal on_pickup_item(item: String)
 var types = CollectionTypeEnum.CollectableType.keys()
 var animation_node: AnimatedSprite2D
 
-# list of upgrades power got
-var _player_upgrades: Dictionary = {
-	"default": { 
-		"cooldown": 0,
-		"duration": 0
-	} 
-}
-var _current_form := "default"
 var _can_move := false
-var health := 100
 var dead := false
-var cooldowns := []
 
 func _ready(): 
 	animation_node = sprite_node.get_node("AnimatedSprite2D")
@@ -51,8 +38,11 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("action_1"): 
 		_change_to_water()
 	
+	if Input.is_action_just_pressed("heal"): 
+		_heal(10)
+	
 func _animation(animation: String):
-	animation_node.play(_current_form + "_" + animation)
+	animation_node.play(PlayerState.current_form + "_" + animation)
 
 func _handle_movement():
 	if _can_move == false or dead:
@@ -85,26 +75,23 @@ func _handle_movement():
 	return input_vector
 	
 func _change_to_water():
-	if cooldowns.has("water"):
+	if PlayerState.cooldowns.has("water") or "water" not in PlayerState.upgrades:
 		return
-
-	powerup_timer.wait_time = _player_upgrades["water"].duration
+	
+	powerup_timer.wait_time = PlayerState.activate_upgrade("water")
 	powerup_timer.start()
-	cooldowns.append("water")
 
 	_update_form("water")
 
 func _update_form(form): 
-	_current_form = form
+	PlayerState.current_form = form
 	_animation(animation_node.animation.split("_")[-1])
 
 func on_pickup(type: String, item: Dictionary):
 	on_pickup_item.emit(item)
 
 	# add upgrade if user doesn't have it yet	
-	if _player_upgrades not in item:
-		_player_upgrades[type] = item
-		
+	PlayerState.add_upgrade(type, item)
 	cooldown_water.visible = true
 
 func _on_dialogue_box_dialogue_started(_id):
@@ -118,32 +105,51 @@ func take_damage(damage: int, damage_type := ""):
 	if _is_immune(damage_type):
 		return
 	
-	health -= damage
-	health_bar.value = health
+	health_bar.value = PlayerState.take_damage(damage)
 	await _animation("take_damage")
 	_animation("idle")
 	
-	if health <= 0:
+	if PlayerState.health <= 0:
 		dead = true
 		_animation("die")
 	
 func show_ui(): 
 	health_bar.visible = true
-	#inventory.visible = true
 
 func _is_immune(damage_type := ""):
 	if not damage_type: 
 		return false
 	
-	return DAMAGE_IMMUNITY_MAPPER[damage_type] == _current_form
+	return DAMAGE_IMMUNITY_MAPPER[damage_type] == PlayerState.current_form
 
 func _on_powerup_end():
 	_update_form("default")
 	cooldown_water.start_cooldown()
 
-func _on_cooldown_end(powerup: String):
-	cooldowns.erase(powerup)
+func _on_cooldown_end(upgrade: String):
+	PlayerState.reset_cooldown(upgrade)
 
 # only dead animation doesn't repeat 
 func _on_animation_end():
-	get_tree().reload_current_scene()
+	dead = false
+	PlayerState.health = 100
+	health_bar.value = 100
+	position = Vector2i(-124, -79)
+
+func _heal(amount: int): 
+	if PlayerState.health == 100:
+		return 
+
+	health_bar.value = PlayerState.use_pot(amount)
+	health_pots.update(PlayerState.pots)
+
+func _on_pickup_health(amount: int):
+	# if user not at 100%, health up
+	if PlayerState.health < 100:
+		health_bar.value = PlayerState.heal(amount)
+		return
+		
+	# if not, add to inventory
+	PlayerState.add_pot()
+	health_pots.update(PlayerState.pots)
+
