@@ -1,3 +1,109 @@
-[gd_scene format=3 uid="uid://ciijelfxoyycu"]
+[gd_scene load_steps=11 format=3 uid="uid://cvyjfrchbh7km"]
+
+[ext_resource type="Script" path="res://scripts/levels/start.gd" id="1_pkebk"]
+[ext_resource type="Texture2D" uid="uid://g4m6fat7nb3k" path="res://assets/sprites/player/slime_idle2.png" id="2_ux1vj"]
+[ext_resource type="Texture2D" uid="uid://oymlmtmqbkd5" path="res://assets/sprites/player/slime_idle3.png" id="3_b8gak"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_b8ae0"]
+line_spacing = 10.0
+font_size = 48
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_413ab"]
+atlas = ExtResource("2_ux1vj")
+region = Rect2(0, 288, 80, 72)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wmyot"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_413ab")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0t8av"]
+atlas = ExtResource("3_b8gak")
+region = Rect2(480, 216, 80, 72)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_guuav"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0t8av")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6l2b"]
+atlas = ExtResource("3_b8gak")
+region = Rect2(240, 72, 80, 72)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ncvlk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6l2b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="start" type="Node2D"]
+script = ExtResource("1_pkebk")
+
+[node name="Label" type="Label" parent="."]
+offset_top = 52.0
+offset_right = 640.0
+offset_bottom = 119.0
+text = "Slimo's Day Out"
+label_settings = SubResource("LabelSettings_b8ae0")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+offset_left = 301.0
+offset_top = 272.0
+offset_right = 338.0
+offset_bottom = 303.0
+text = "Exit"
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 301.0
+offset_top = 231.0
+offset_right = 338.0
+offset_bottom = 262.0
+text = "Credits"
+
+[node name="Button3" type="Button" parent="."]
+offset_left = 301.0
+offset_top = 190.0
+offset_right = 338.0
+offset_bottom = 221.0
+text = "Start Game
+"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(97.4444, 141.5)
+rotation = -0.308207
+scale = Vector2(1.51389, 1.51389)
+sprite_frames = SubResource("SpriteFrames_wmyot")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(537, 225)
+rotation = 0.229437
+scale = Vector2(1.91667, 1.91667)
+sprite_frames = SubResource("SpriteFrames_guuav")
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+position = Vector2(184, 273)
+rotation = -0.107371
+scale = Vector2(1.65278, 1.65278)
+sprite_frames = SubResource("SpriteFrames_ncvlk")
+
+[connection signal="pressed" from="Button" to="." method="exit"]
+[connection signal="pressed" from="Button2" to="." method="credits"]
+[connection signal="pressed" from="Button3" to="." method="start_game"]
