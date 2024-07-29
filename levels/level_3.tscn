@@ -10369,6 +10369,7 @@ position = Vector2(-707, -891)
 rotation = 0.785398
 shape = SubResource("CapsuleShape2D_prowv")
 
+[connection signal="on_reset" from="player" to="." method="on_player_reset"]
 [connection signal="timeout" from="DamageTimer" to="." method="_damage_player"]
 [connection signal="pickup_health" from="healthPickup" to="." method="_on_health_pickup"]
 [connection signal="pickup_health" from="healthPickup" to="player" method="_on_pickup_health"]

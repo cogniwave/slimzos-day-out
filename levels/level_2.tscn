@@ -9492,6 +9492,7 @@ skip_input_action = "skip_dialogue"
 custom_effects = Array[RichTextEffect]([SubResource("RichTextEffect_c6wh6"), SubResource("RichTextEffect_pyhwf"), SubResource("RichTextEffect_fu5un")])
 max_options_count = 1
 
+[connection signal="on_reset" from="player" to="." method="on_player_reset"]
 [connection signal="timeout" from="timers/DamageTimer" to="." method="_damage_player"]
 [connection signal="timeout" from="timers/PowerupTimer" to="player" method="_on_powerup_end"]
 [connection signal="body_entered" from="environment/sunlightColider" to="." method="entered_sunlight"]

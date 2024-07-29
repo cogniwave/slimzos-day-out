@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://cid40tk8smqsh"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="1_butjt"]
+
+[resource]
+script = ExtResource("1_butjt")
+starts = {
+"START": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(886, 644),
+"start_id": "START"
+},
+"1_1": {
+"dialogue": "Ooh, I wonder what this will do...",
+"offset": Vector2(1520, 800),
+"options": {
+0: {
+"condition": {},
+"link": &"1_2",
+"text": ""
+}
+},
+"size": Vector2(300, 331),
+"speaker": "<Slimzo>"
+},
+"1_2": {
+"dialogue": "You just picked up a fire resistant potion. Like the water before, it'll make you immute to fire for a short period of time",
+"offset": Vector2(2137, 963),
+"options": {
+0: {
+"condition": {},
+"link": &"1_3",
+"text": ""
+}
+},
+"size": Vector2(300, 331),
+"speaker": "<Mysterious voice>"
+},
+"1_3": {
+"dialogue": "Press \"2\" to activate it ",
+"offset": Vector2(2887, 1004),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 331),
+"speaker": "<Mysterious voice>"
+}
+}
+variables = {}
+strays = Array[String]([])
+characters = ""

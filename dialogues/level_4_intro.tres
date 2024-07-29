@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://bam1j0uka8p3s"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="1_hgbw7"]
+
+[resource]
+script = ExtResource("1_hgbw7")
+starts = {
+"START": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(172, 462),
+"start_id": "START"
+},
+"1_1": {
+"dialogue": " The sun is fully out, we need to stick to the shadows now",
+"offset": Vector2(723, 461),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(557, 387),
+"speaker": "<Slimzo>"
+}
+}
+variables = {}
+strays = Array[String]([])
+characters = ""

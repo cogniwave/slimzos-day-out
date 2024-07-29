@@ -45,3 +45,5 @@ func _on_health_pickup(_amount):
 		shown_tutorial = true
 		PlayerState.add_upgrade("pots", {})
 		
+func on_player_reset(): 
+	player.position = Vector2i(-124, -79)

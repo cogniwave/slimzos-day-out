@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://t1k0lj0fkb48"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="1_4jhyk"]
+
+[resource]
+script = ExtResource("1_4jhyk")
+starts = {
+"START": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(834, 555),
+"start_id": "START"
+},
+"1_1": {
+"dialogue": " Lava ?! How did this get here ? ",
+"offset": Vector2(1538, 605),
+"options": {
+0: {
+"condition": {},
+"link": &"1_2",
+"text": ""
+}
+},
+"size": Vector2(300, 331),
+"speaker": "<Slimzo>"
+},
+"1_2": {
+"dialogue": "I hope there's another way through
+",
+"offset": Vector2(2288, 749),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 331),
+"speaker": "<Slimzo>"
+}
+}
+variables = {}
+strays = Array[String]([])
+characters = ""

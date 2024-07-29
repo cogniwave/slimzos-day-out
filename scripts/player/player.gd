@@ -6,7 +6,7 @@ const JUMP_VELOCITY = -400.0
 
 const DAMAGE_IMMUNITY_MAPPER := {
 	"sunlight": "water",
-	#dsadsa: "fire",
+	"lava": "fire",
 	#earth,
 	#position,
 	#pumpkin,
@@ -18,25 +18,31 @@ const DAMAGE_IMMUNITY_MAPPER := {
 @onready var sprite_node = $Node2D
 @onready var powerup_timer = $PowerupTimer
 @onready var cooldown_water = $CooldownWater
+@onready var cooldown_fire = $CooldownFire
 
 signal die()
 signal on_pickup_item(item: String)
+signal on_reset()
 
 var types = CollectionTypeEnum.CollectableType.keys()
 var animation_node: AnimatedSprite2D
 
 var _can_move := false
 var dead := false
+var tile_ref: TileMap
 
 func _ready(): 
 	animation_node = sprite_node.get_node("AnimatedSprite2D")
 	animation_node.connect("animation_finished", _on_animation_end)
-	
+	 
 func _physics_process(_delta):
 	_handle_movement()
-	
+		
 	if Input.is_action_just_pressed("action_1"): 
 		_change_to_water()
+		
+	if Input.is_action_just_pressed("action_2"): 
+		_change_to_fire()
 	
 	if Input.is_action_just_pressed("heal"): 
 		_heal(10)
@@ -82,6 +88,15 @@ func _change_to_water():
 	powerup_timer.start()
 
 	_update_form("water")
+	
+func _change_to_fire():
+	if PlayerState.cooldowns.has("fire") or "fire" not in PlayerState.upgrades:
+		return
+	
+	powerup_timer.wait_time = PlayerState.activate_upgrade("fire")
+	powerup_timer.start()
+
+	_update_form("fire")
 
 func _update_form(form): 
 	PlayerState.current_form = form
@@ -95,6 +110,9 @@ func on_pickup(type: String, item: Dictionary):
 	
 	if type == "water": 
 		cooldown_water.visible = true
+	
+	if type == "fire": 
+		cooldown_fire.visible = true
 		
 	if type == "pots": 
 		health_pots.visible = true
@@ -134,8 +152,14 @@ func _is_immune(damage_type := ""):
 	return DAMAGE_IMMUNITY_MAPPER[damage_type] == PlayerState.current_form
 
 func _on_powerup_end():
+	if PlayerState.current_form == "water": 
+		cooldown_water.start_cooldown()
+		
+	if PlayerState.current_form == "fire": 
+		cooldown_fire.start_cooldown()
+		
 	_update_form("default")
-	cooldown_water.start_cooldown()
+	
 
 func _on_cooldown_end(upgrade: String):
 	PlayerState.reset_cooldown(upgrade)
@@ -145,7 +169,7 @@ func _on_animation_end():
 	dead = false
 	PlayerState.health = 100
 	health_bar.value = 100
-	position = Vector2i(-124, -79)
+	on_reset.emit()
 
 func _heal(amount: int): 
 	if PlayerState.health == 100:
@@ -163,4 +187,3 @@ func _on_pickup_health(amount: int):
 	# if not, add to inventory
 	PlayerState.add_pot()
 	health_pots.update(PlayerState.pots)
-

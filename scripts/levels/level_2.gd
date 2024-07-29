@@ -48,3 +48,6 @@ func _start_dialog(dialog_path: String):
 
 func _on_collectable_body_entered(_body):
 	_start_dialog("res://dialogues/level_2_powerups.tres")
+	
+func on_player_reset():
+	player.position = Vector2i(-124, -79)

@@ -9,7 +9,7 @@ extends Node
 	"default": { 
 		"cooldown": 0,
 		"duration": 0
-	} 
+	},
 }
 
 @export var cooldowns: Array[String] = []

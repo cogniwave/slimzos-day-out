@@ -1,7 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://0so8ci8tx26a"]
+[gd_scene load_steps=7 format=3 uid="uid://0so8ci8tx26a"]
 
 [ext_resource type="Script" path="res://scripts/player/cooldown.gd" id="1_lymbc"]
-[ext_resource type="PackedScene" uid="uid://b7maq4b00u2vh" path="res://scenes/collectable.tscn" id="2_oxdxp"]
+[ext_resource type="Texture2D" uid="uid://858shd0tyuyb" path="res://assets/sprites/environment/world_tileset.png" id="3_8mwkg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnksh"]
+atlas = ExtResource("3_8mwkg")
+region = Rect2(16, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afi4p"]
+atlas = ExtResource("3_8mwkg")
+region = Rect2(0, 128, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0d0yi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnksh")
+}],
+"loop": false,
+"name": &"fire",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afi4p")
+}],
+"loop": false,
+"name": &"water",
+"speed": 5.0
+}]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pk0ii"]
 line_spacing = 1.0
@@ -10,8 +37,14 @@ font_size = 14
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_lymbc")
 
-[node name="collectable" parent="." instance=ExtResource("2_oxdxp")]
-collectable_type = 1
+[node name="CountdownTimer" type="Timer" parent="."]
+
+[node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0d0yi")
+animation = &"water"
 
 [node name="Label" type="Label" parent="."]
 visible = false
@@ -21,11 +54,6 @@ offset_right = 4.0
 offset_bottom = 12.0
 text = "5"
 label_settings = SubResource("LabelSettings_pk0ii")
-
-[node name="CountdownTimer" type="Timer" parent="."]
-
-[node name="CooldownTimer" type="Timer" parent="."]
-one_shot = true
 
 [connection signal="timeout" from="CountdownTimer" to="." method="on_countdown"]
 [connection signal="timeout" from="CooldownTimer" to="." method="on_cooldown_end"]
