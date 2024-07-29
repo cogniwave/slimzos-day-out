@@ -7,10 +7,6 @@ const JUMP_VELOCITY = -400.0
 const DAMAGE_IMMUNITY_MAPPER := {
 	"sunlight": "water",
 	"lava": "fire",
-	#earth,
-	#position,
-	#pumpkin,
-	#shroom_red,
 }
 
 @onready var health_bar = $HealthBar
@@ -52,6 +48,8 @@ func _animation(animation: String):
 
 func _handle_movement():
 	if _can_move == false or dead:
+		# make sure we're displaying the idle animation
+		_animation("idle")
 		return
 	
 	var input_right = Input.get_action_strength("move_right")

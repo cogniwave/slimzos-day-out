@@ -1,0 +1,71 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://cema6j57kwcav"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="1_gmrpx"]
+
+[resource]
+script = ExtResource("1_gmrpx")
+starts = {
+"START": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(254, 523),
+"start_id": "START"
+},
+"1_1": {
+"dialogue": "Mom! Dad! ",
+"offset": Vector2(820, 400),
+"options": {
+0: {
+"condition": {},
+"link": &"1_2",
+"text": ""
+}
+},
+"size": Vector2(300, 331),
+"speaker": "<Slimzo>"
+},
+"1_2": {
+"dialogue": "Oh Slimzo my boy! You're okay! Where did you go? Did you get hurt? ",
+"offset": Vector2(1280, 460),
+"options": {
+0: {
+"condition": {},
+"link": &"1_3",
+"text": ""
+}
+},
+"size": Vector2(300, 331),
+"speaker": "<Mama Slime>"
+},
+"1_3": {
+"dialogue": "*Grunts in approval*",
+"offset": Vector2(1840, 500),
+"options": {
+0: {
+"condition": {},
+"link": &"1_4",
+"text": ""
+}
+},
+"size": Vector2(300, 331),
+"speaker": "<Papa Slime>"
+},
+"1_4": {
+"dialogue": "I'm okay mom, I went on a dventure! I've got quite the tale to tell you",
+"offset": Vector2(2360, 520),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(665, 384),
+"speaker": "<Slimo>"
+}
+}
+variables = {}
+strays = Array[String]([])
+characters = ""
