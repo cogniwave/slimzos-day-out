@@ -10,10 +10,13 @@ config_version=5
 
 [application]
 
-config/name="Psgj 15"
+config/name="Slimzo's Day Out"
+config/version="1"
 run/main_scene="res://levels/start.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://icon.ico"
+config/macos_native_icon="res://icon.ico"
+config/windows_native_icon="res://icon.ico"
 
 [autoload]
 
@@ -30,11 +33,6 @@ window/size/window_height_override=720
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"
-
-[editor]
-
-version_control/plugin_name="GitPlugin"
-version_control/autoload_on_startup=true
 
 [editor_plugins]
 

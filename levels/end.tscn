@@ -18,10 +18,21 @@ label_settings = SubResource("LabelSettings_b8ae0")
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="."]
-offset_left = 301.0
-offset_top = 208.0
-offset_right = 338.0
-offset_bottom = 239.0
+offset_left = 295.0
+offset_top = 244.0
+offset_right = 332.0
+offset_bottom = 275.0
 text = "Exit"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 169.0
+offset_top = 126.0
+offset_right = 453.0
+offset_bottom = 227.0
+text = "Thank you very much for 
+playing my first ever game
+
+looking forward to build many more!"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="Button" to="." method="exit"]

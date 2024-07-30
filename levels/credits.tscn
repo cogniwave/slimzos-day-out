@@ -19,11 +19,12 @@ label_settings = SubResource("LabelSettings_nbc8p")
 
 [node name="Label2" type="Label" parent="."]
 offset_left = -12.0
-offset_top = -68.0
+offset_top = -74.0
 offset_right = 423.0
-offset_bottom = -19.0
+offset_bottom = 1.0
 text = "This game would not be possible without the great souls 
-that create and provide free assets!"
+that create and provide free assets!
+And Pirate Software for all he does for the community"
 horizontal_alignment = 1
 vertical_alignment = 1
 justification_flags = 0

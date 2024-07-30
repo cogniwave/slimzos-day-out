@@ -62,7 +62,6 @@ func _damage_player():
 	if current_floor in [FloorTypes.platform, FloorTypes.shade] or dialogue_box.visible  :
 		return
 		
-	return
 	if current_floor == FloorTypes.ground:
 		player.take_damage(5 * timer_cycles, "sunlight")
 	else: 
