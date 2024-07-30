@@ -15,8 +15,12 @@ const DAMAGE_IMMUNITY_MAPPER := {
 @onready var powerup_timer = $PowerupTimer
 @onready var cooldown_water = $CooldownWater
 @onready var cooldown_fire = $CooldownFire
+@onready var take_damage_sound = $Sounds/TakeDamage
+@onready var action_sound = $Sounds/Action
+@onready var cooldown_sound = $Sounds/Cooldown
+@onready var heal_sound = $Sounds/Heal
+@onready var die_sound = $Sounds/Die
 
-signal die()
 signal on_pickup_item(item: String)
 signal on_reset()
 
@@ -47,7 +51,10 @@ func _animation(animation: String):
 	animation_node.play(PlayerState.current_form + "_" + animation)
 
 func _handle_movement():
-	if _can_move == false or dead:
+	if dead: 
+		return
+		
+	if _can_move == false:
 		# make sure we're displaying the idle animation
 		_animation("idle")
 		return
@@ -80,6 +87,7 @@ func _handle_movement():
 	
 func _change_to_water():
 	if PlayerState.cooldowns.has("water") or "water" not in PlayerState.upgrades:
+		cooldown_sound.play()
 		return
 	
 	powerup_timer.wait_time = PlayerState.activate_upgrade("water")
@@ -89,6 +97,7 @@ func _change_to_water():
 	
 func _change_to_fire():
 	if PlayerState.cooldowns.has("fire") or "fire" not in PlayerState.upgrades:
+		cooldown_sound.play()		
 		return
 	
 	powerup_timer.wait_time = PlayerState.activate_upgrade("fire")
@@ -97,6 +106,7 @@ func _change_to_fire():
 	_update_form("fire")
 
 func _update_form(form): 
+	action_sound.play()
 	PlayerState.current_form = form
 	_animation(animation_node.animation.split("_")[-1])
 
@@ -123,8 +133,10 @@ func _on_dialogue_box_dialogue_ended():
 	_can_move = true
 
 func take_damage(damage: int, damage_type := ""):
-	if _is_immune(damage_type):
+	if _is_immune(damage_type) or dead:
 		return
+	
+	take_damage_sound.play()
 	
 	health_bar.value = PlayerState.take_damage(damage)
 	await _animation("take_damage")
@@ -133,6 +145,7 @@ func take_damage(damage: int, damage_type := ""):
 	if PlayerState.health <= 0:
 		dead = true
 		_animation("die")
+		die_sound.play()
 	
 func show_ui(): 
 	health_bar.visible = true
@@ -170,11 +183,18 @@ func _on_animation_end():
 	on_reset.emit()
 
 func _heal(amount: int): 
-	if PlayerState.health == 100:
-		return 
+	if PlayerState.health == 100 or dead:
+		return
+		
+	var health_healed = PlayerState.use_pot(amount)
 
-	health_bar.value = PlayerState.use_pot(amount)
+	if health_healed == null:
+		cooldown_sound.play()
+		return
+		
+	health_bar.value = health_healed
 	health_pots.update(PlayerState.pots)
+	heal_sound.play()
 
 func _on_pickup_health(amount: int):
 	# if user not at 100%, health up

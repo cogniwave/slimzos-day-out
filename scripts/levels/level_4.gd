@@ -9,6 +9,7 @@ extends Node2D
 @onready var tile_map = $environment/TileMap
 @onready var pots = $pots
 @onready var lava_dialog_trigger = $lavaDialogTrigger
+@onready var audio_player = $AudioStreamPlayer
 
 enum FloorTypes {
 	lava, 
@@ -23,8 +24,11 @@ var current_floor: FloorTypes = FloorTypes.ground
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	dialogue_box.custom_effects[0].char_displayed.connect(_on_char_displayed)
 	dialogue_box.start()
 	player.health_bar.value = PlayerState.health
+	player.health_pots.update(PlayerState.pots)
+	PlayerState.reset()
 	PlayerState.reset()
 	player.show_ui()
 	player.position = Vector2i(152, 43) 
@@ -105,9 +109,10 @@ func leave_platform(body):
 		timer_cycles = 1
 		current_floor = FloorTypes.lava
 
-
 func trigger_lava_dialog(body):
 	if body.is_in_group("Player"):
 		_start_dialog("res://dialogues/level_4_lava.tres")
 		lava_dialog_trigger.queue_free()
-		
+
+func _on_char_displayed(_idx):
+	audio_player.play()

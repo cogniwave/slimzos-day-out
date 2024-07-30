@@ -4,14 +4,17 @@ extends Node2D
 @onready var camera = $player/camera
 @onready var player = $player
 @onready var damage_timer = $DamageTimer
+@onready var audio_player = $AudioStreamPlayer
 
 var shown_tutorial := false
 var timer_cycles := 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	dialogue_box.custom_effects[0].char_displayed.connect(_on_char_displayed)
 	dialogue_box.start()
 	player.health_bar.value = PlayerState.health
+	player.health_pots.update(PlayerState.pots)
 	PlayerState.reset()
 	player.show_ui()
 	
@@ -47,3 +50,7 @@ func _on_health_pickup(_amount):
 		
 func on_player_reset(): 
 	player.position = Vector2i(-124, -79)
+
+func _on_char_displayed(_idx):
+	audio_player.play()
+

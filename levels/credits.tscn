@@ -1,0 +1,92 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca0ec4he751tf"]
+
+[ext_resource type="Script" path="res://scripts/levels/credits.gd" id="1_s2e53"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nbc8p"]
+font_size = 38
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(107, 135)
+script = ExtResource("1_s2e53")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 137.0
+offset_top = -129.0
+offset_right = 268.0
+offset_bottom = -76.0
+text = "Credits"
+label_settings = SubResource("LabelSettings_nbc8p")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = -12.0
+offset_top = -68.0
+offset_right = 423.0
+offset_bottom = -19.0
+text = "This game would not be possible without the great souls 
+that create and provide free assets!"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 0
+
+[node name="LinkButton" type="LinkButton" parent="."]
+offset_left = 29.0
+offset_top = 12.0
+offset_right = 317.0
+offset_bottom = 35.0
+text = "Slime sprites from @tienlev on itch.io"
+uri = "https://tienlev.itch.io/slime-pixel-set"
+metadata/_edit_use_anchors_ = true
+
+[node name="LinkButton2" type="LinkButton" parent="."]
+offset_left = 29.0
+offset_top = 39.0
+offset_right = 337.0
+offset_bottom = 62.0
+text = "Light textures from @elfranek on itch.io"
+uri = "https://pixelfranek.itch.io/free-textures-of-light"
+metadata/_edit_use_anchors_ = true
+
+[node name="LinkButton3" type="LinkButton" parent="."]
+offset_left = 29.0
+offset_top = 66.0
+offset_right = 443.0
+offset_bottom = 89.0
+text = "Some terrain and SFX from @brackeygames on itch.io"
+uri = "https://brackeysgames.itch.io/brackeys-platformer-bundle"
+metadata/_edit_use_anchors_ = true
+
+[node name="LinkButton4" type="LinkButton" parent="."]
+offset_left = 29.0
+offset_top = 93.0
+offset_right = 343.0
+offset_bottom = 116.0
+text = "Some terrain from @inthesope on itch.io"
+uri = "https://inthesope.itch.io/2d-topdown-grassland-the-jungle"
+metadata/_edit_use_anchors_ = true
+
+[node name="LinkButton5" type="LinkButton" parent="."]
+offset_left = 30.0
+offset_top = 121.0
+offset_right = 461.0
+offset_bottom = 144.0
+text = "Background music from @audiocoffe of audiocoffee.net"
+uri = "https://freesound.org/people/AudioCoffee/sounds/722855"
+metadata/_edit_use_anchors_ = true
+
+[node name="LinkButton6" type="LinkButton" parent="."]
+offset_left = 30.0
+offset_top = 151.0
+offset_right = 338.0
+offset_bottom = 174.0
+text = "Rest of SFX from @jdwasabi from itch.io"
+uri = "https://jdwasabi.itch.io/8-bit-16-bit-sound-effects-pack"
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="."]
+offset_left = -94.0
+offset_top = -119.0
+offset_right = 21.0
+offset_bottom = -88.0
+text = "Back to menu"
+
+[connection signal="pressed" from="Button" to="." method="menu"]

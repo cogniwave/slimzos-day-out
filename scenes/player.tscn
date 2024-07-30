@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=3 uid="uid://dfnxd3n61qqu4"]
+[gd_scene load_steps=109 format=3 uid="uid://dfnxd3n61qqu4"]
 
 [ext_resource type="Texture2D" uid="uid://g4m6fat7nb3k" path="res://assets/sprites/player/slime_idle2.png" id="1_42ol3"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_vgiml"]
@@ -10,6 +10,11 @@
 [ext_resource type="Script" path="res://scripts/player/HealthBarText.gd" id="8_8p5ii"]
 [ext_resource type="Texture2D" uid="uid://858shd0tyuyb" path="res://assets/sprites/environment/world_tileset.png" id="9_qfq8w"]
 [ext_resource type="Script" path="res://scripts/player/healthPots.gd" id="10_1kd3x"]
+[ext_resource type="AudioStream" uid="uid://cc5gww8pwypgo" path="res://assets/sound/damage.wav" id="11_8e0vs"]
+[ext_resource type="AudioStream" uid="uid://pmjqcnnhlupb" path="res://assets/sound/actions.wav" id="12_o55ci"]
+[ext_resource type="AudioStream" uid="uid://cj4nmfw6j42n8" path="res://assets/sound/cooldown.wav" id="13_4d8mk"]
+[ext_resource type="AudioStream" uid="uid://bx1culiy5k58d" path="res://assets/sound/heal.wav" id="14_b7e3h"]
+[ext_resource type="AudioStream" uid="uid://cfasjotskdxwk" path="res://assets/sound/die.wav" id="15_vij15"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_co552"]
 radius = 11.0
@@ -718,7 +723,7 @@ shape = SubResource("CircleShape2D_co552")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D"]
 position = Vector2(-37, -39)
 sprite_frames = SubResource("SpriteFrames_id1q2")
-animation = &"fire_die"
+animation = &"default_die"
 autoplay = "default_idle"
 centered = false
 
@@ -742,7 +747,7 @@ offset_top = -168.0
 offset_right = -200.0
 offset_bottom = -145.0
 theme = SubResource("Theme_um7yn")
-step = 10.0
+step = 5.0
 value = 100.0
 show_percentage = false
 
@@ -783,6 +788,28 @@ metadata/_edit_use_anchors_ = true
 
 [node name="PowerupTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="TakeDamage" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("11_8e0vs")
+bus = &"SFX"
+
+[node name="Action" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("12_o55ci")
+bus = &"SFX"
+
+[node name="Cooldown" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("13_4d8mk")
+bus = &"SFX"
+
+[node name="Heal" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("14_b7e3h")
+bus = &"SFX"
+
+[node name="Die" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("15_vij15")
+bus = &"SFX"
 
 [connection signal="cooldown_end" from="CooldownWater" to="." method="_on_cooldown_end"]
 [connection signal="cooldown_end" from="CooldownFire" to="." method="_on_cooldown_end"]

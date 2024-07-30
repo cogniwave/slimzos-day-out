@@ -37,10 +37,10 @@ func add_pot():
 	
 func use_pot(amount: int):
 	if pots == 0:
-		return
+		return null
 	
-	heal(amount)
 	pots -= 1
+	return heal(amount)
 
 func activate_upgrade(upgrade: String) -> int: 
 	if upgrade not in upgrades: 
