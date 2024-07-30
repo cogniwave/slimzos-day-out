@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://dbdbpiesg216j"]
+[gd_scene load_steps=55 format=3 uid="uid://dbdbpiesg216j"]
 
 [ext_resource type="Script" path="res://scripts/levels/level_4.gd" id="1_3po0u"]
 [ext_resource type="PackedScene" uid="uid://dfnxd3n61qqu4" path="res://scenes/player.tscn" id="1_w6558"]
@@ -9254,6 +9254,9 @@ radius = 146.441
 radius = 316.0
 height = 646.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_uqwk8"]
+radius = 76.0263
+
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_ajdsr"]
 a = Vector2(8.5, -32)
 b = Vector2(8.5, 720)
@@ -9304,6 +9307,7 @@ collision_mask = 3
 
 [node name="DamageTimer" type="Timer" parent="."]
 process_callback = 0
+wait_time = 1.5
 
 [node name="environment" type="Node" parent="."]
 
@@ -9619,6 +9623,11 @@ texture = ExtResource("29_1k6vm")
 position = Vector2(283, -550)
 texture = ExtResource("29_1k6vm")
 
+[node name="Pine06" type="Sprite2D" parent="environment"]
+position = Vector2(-184, -294)
+scale = Vector2(0.3125, 0.3125)
+texture = ExtResource("27_273mp")
+
 [node name="nextLevelColider" parent="." instance=ExtResource("21_yey3q")]
 position = Vector2(-3495, -731)
 collision_layer = 2
@@ -9891,6 +9900,19 @@ texture = ExtResource("25_ce6kn")
 position = Vector2(519, -213)
 shape = SubResource("CapsuleShape2D_inqtw")
 
+[node name="shadow20" type="Area2D" parent="shadows"]
+
+[node name="PointLight2D" type="PointLight2D" parent="shadows/shadow20"]
+position = Vector2(-165, -274)
+scale = Vector2(0.553954, 0.639559)
+energy = 0.49
+blend_mode = 1
+texture = ExtResource("25_ce6kn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="shadows/shadow20"]
+position = Vector2(-173, -279)
+shape = SubResource("CircleShape2D_uqwk8")
+
 [node name="lavaEnterColider" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="lavaEnterColider"]
@@ -10052,6 +10074,9 @@ duration = 3
 [node name="healthPickup" parent="pots" instance=ExtResource("27_3g0m2")]
 position = Vector2(30, 357)
 
+[node name="healthPickup10" parent="pots" instance=ExtResource("27_3g0m2")]
+position = Vector2(-285, -198)
+
 [node name="healthPickup2" parent="pots" instance=ExtResource("27_3g0m2")]
 position = Vector2(-286, 475)
 
@@ -10064,17 +10089,27 @@ position = Vector2(-3072, 35)
 [node name="healthPickup5" parent="pots" instance=ExtResource("27_3g0m2")]
 position = Vector2(-2955, -68)
 
+[node name="healthPickup11" parent="pots" instance=ExtResource("27_3g0m2")]
+position = Vector2(-2607, 21)
+
+[node name="healthPickup12" parent="pots" instance=ExtResource("27_3g0m2")]
+position = Vector2(-2834, -323)
+
 [node name="healthPickup6" parent="pots" instance=ExtResource("27_3g0m2")]
 position = Vector2(-50, -1100)
+amount = 30
 
 [node name="healthPickup7" parent="pots" instance=ExtResource("27_3g0m2")]
 position = Vector2(720, -888)
+amount = 20
 
 [node name="healthPickup8" parent="pots" instance=ExtResource("27_3g0m2")]
 position = Vector2(1226, -136)
+amount = 50
 
 [node name="healthPickup9" parent="pots" instance=ExtResource("27_3g0m2")]
 position = Vector2(399, -731)
+amount = 30
 
 [node name="lavaDialogTrigger" type="Area2D" parent="."]
 

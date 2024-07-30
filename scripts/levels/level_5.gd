@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var dialogue_box = %DialogueBox
 @onready var player = $player
-@onready var audio_player = $AudioStreamPlayer2D
+@onready var audio_player = $AudioStreamPlayer
 
 var cinematic_move := false
 var target_position := Vector2(964, 159)

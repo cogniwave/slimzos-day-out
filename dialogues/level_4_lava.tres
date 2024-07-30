@@ -23,7 +23,7 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(300, 331),
+"size": Vector2(300, 392),
 "speaker": "<Slimzo>"
 },
 "1_2": {
@@ -37,7 +37,7 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(300, 331),
+"size": Vector2(300, 392),
 "speaker": "<Slimzo>"
 }
 }

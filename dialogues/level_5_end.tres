@@ -23,7 +23,7 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(300, 331),
+"size": Vector2(300, 392),
 "speaker": "<Slimzo>"
 },
 "1_2": {
@@ -36,7 +36,7 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(300, 331),
+"size": Vector2(300, 392),
 "speaker": "<Mama Slime>"
 },
 "1_3": {
@@ -49,7 +49,7 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(300, 331),
+"size": Vector2(300, 392),
 "speaker": "<Papa Slime>"
 },
 "1_4": {
@@ -62,8 +62,8 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(665, 384),
-"speaker": "<Slimo>"
+"size": Vector2(665, 392),
+"speaker": "<Slimzo>"
 }
 }
 variables = {}

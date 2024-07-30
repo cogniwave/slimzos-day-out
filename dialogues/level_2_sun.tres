@@ -24,7 +24,7 @@ nodes = {
 }
 },
 "size": Vector2(510.417, 442.805),
-"speaker": "<Slimezo>"
+"speaker": "<Slimzo>"
 },
 "1_2": {
 "dialogue": "  We must stay in the shadows or find something that would help me stay in the sun",
@@ -37,7 +37,7 @@ nodes = {
 }
 },
 "size": Vector2(616.668, 478.222),
-"speaker": "<Slimezo>"
+"speaker": "<Slimzo>"
 },
 "1_3": {
 "dialogue": "  The longer we stay in it's light, the more it hurts",
@@ -49,8 +49,8 @@ nodes = {
 "text": ""
 }
 },
-"size": Vector2(515.622, 380.247),
-"speaker": "<Slimezo>"
+"size": Vector2(515.622, 392),
+"speaker": "<Slimzo>"
 }
 }
 variables = {}

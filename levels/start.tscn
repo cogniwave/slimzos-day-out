@@ -60,7 +60,7 @@ script = ExtResource("1_pkebk")
 offset_top = 52.0
 offset_right = 640.0
 offset_bottom = 119.0
-text = "Slimo's Day Out"
+text = "Slimzo's Day Out"
 label_settings = SubResource("LabelSettings_b8ae0")
 horizontal_alignment = 1
 

@@ -10204,6 +10204,7 @@ amount = 20
 
 [node name="healthPickup3" parent="." instance=ExtResource("32_2dvgx")]
 position = Vector2(981, -471)
+amount = 20
 
 [node name="healthPickup4" parent="." instance=ExtResource("32_2dvgx")]
 position = Vector2(320, -1372)
